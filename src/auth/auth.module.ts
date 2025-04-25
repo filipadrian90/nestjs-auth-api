@@ -5,12 +5,6 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './jwt.strategy';
-import assert from 'assert';
-
-assert(
-  process.env.JWT_EXPIRES_IN != null,
-  'Missing JWT_EXPIRES_IN variable in .env file',
-);
 
 @Module({
   imports: [
@@ -18,7 +12,7 @@ assert(
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: process.env.JWT_EXPIRES_IN || '1h' },
+      signOptions: { expiresIn: process.env.JWT_EXPIRES_IN ?? '1h' },
     }),
   ],
   controllers: [AuthController],

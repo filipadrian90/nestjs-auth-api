@@ -23,7 +23,7 @@ export class AdminController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('create-user')
-  @Roles('admin') // ✅ only admin can access this route
+  @Roles('admin') // only admin can access this route
   async createUser(@Body() data: CreateUserInput) {
     return this.usersService.create(data);
   }
